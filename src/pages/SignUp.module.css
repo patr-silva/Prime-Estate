@@ -1,0 +1,133 @@
+.container {
+  margin: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    margin: 3rem;
+  }
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.nameInput {
+  margin-bottom: 0.8rem;
+  background: url("../assets/svg/badgeIcon.svg") #ffffff 2.5% center no-repeat;
+  box-shadow: rgba(0, 0, 0, 0.11);
+  border: none;
+  background: #ffffff;
+  border-radius: 3rem;
+  height: 3rem;
+  width: 100%;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 3rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 1100px) {
+  .passwordInput,
+  .emailInput,
+  .nameInput {
+    padding: 0 5rem;
+  }
+}
+
+.emailInput {
+  margin-bottom: 0.8rem;
+  background: url("../assets/svg/personIcon.svg") #ffffff 2.5% center no-repeat;
+  box-shadow: rgba(0, 0, 0, 0.11);
+  border: none;
+  background: #ffffff;
+  border-radius: 3rem;
+  height: 3rem;
+  width: 100%;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 3rem;
+  font-size: 1rem;
+}
+
+.passwordDiv {
+  position: relative;
+}
+
+.passwordInput {
+  margin-bottom: 0.8rem;
+  background: url("../assets/svg/lockIcon.svg") #ffffff 2.5% center no-repeat;
+  box-shadow: rgba(0, 0, 0, 0.11);
+  border: none;
+  background: #ffffff;
+  border-radius: 3rem;
+  height: 3rem;
+  width: 100%;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 3rem;
+  font-size: 1rem;
+}
+
+.showPassword {
+  cursor: pointer;
+  position: absolute;
+  top: -4%;
+  right: 1%;
+  padding: 1rem;
+}
+
+.forgotPassword {
+  cursor: pointer;
+  color: #00cc66;
+  font-weight: 600;
+  text-align: right;
+  font-size: 0.8rem;
+}
+
+.signUp {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: inherit;
+}
+
+@media (min-width: 1024px) {
+  .signUp {
+    justify-content: start;
+  }
+}
+
+.text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: #00cc66;
+  border-radius: 50%;
+}
+
+@media (min-width: 1024px) {
+  .btn {
+    margin-left: 3rem;
+  }
+}
+
+.register {
+  color: #00cc66;
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}

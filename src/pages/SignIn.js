@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import OAuth from "../components/OAuth";
+
+import classes from "./SignIn.module.css";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -38,30 +40,30 @@ const SignIn = () => {
         navigate("/");
       }
     } catch (error) {
-     toast.error('Bad User Credentials')
+      toast.error("Bad User Credentials");
     }
   };
   return (
     <>
-      <div className='pageContainer'>
+      <div className={classes.container}>
         <header>
-          <p className='pageHeader'>Welcome back!</p>
+          <p className={classes.header}>Welcome back!</p>
         </header>
         <main>
           <form onSubmit={onSubmit}>
             <input
               type='email'
-              className='emailInput'
+              className={classes.emailInput}
               placeholder='Email'
               id='email'
               value={email}
               onChange={onChange}
             />
-            <div className='passwordInputDiv'>
+            <div className={classes.passwordDiv}>
               <input
                 type={showPassword ? "text" : "password"}
-                className='passwordInput'
-                placeholder='password'
+                className={classes.passwordInput}
+                placeholder='Password'
                 id='password'
                 value={password}
                 onChange={onChange}
@@ -70,23 +72,23 @@ const SignIn = () => {
                 src={visibilityIcon}
                 alt='Show password'
                 onClick={() => setShowPassword((prevState) => !prevState)}
-                className='showPassword'
+                className={classes.showPassword}
               />
             </div>
-            <Link to='/forgot-password' className='forgotPasswordLink'>
+            <Link to='/forgot-password' className={classes.forgotPassword}>
               Forgot password?
             </Link>
-            <div className='signInBar'>
-              <p className='signInText'>Sign in</p>
-              <button className='signInButton'>
+            <div className={classes.signIn}>
+              <p className={classes.text}>Sign in</p>
+              <button className={classes.btn}>
                 <ArrowRightIcon fill='#ffffff' width='44px' height='44px' />
               </button>
             </div>
           </form>
-          <OAuth/>
-          <Link to='/sign-up' className='registerLink'>
+          <OAuth />
+          <Link to='/sign-up' className={classes.register}>
             {" "}
-            Sign Up instead
+            Sign up
           </Link>
         </main>
       </div>

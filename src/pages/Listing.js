@@ -17,6 +17,8 @@ import { db } from "../firebase.config";
 import Spinner from "../components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
 
+import classes from "./Listing.module.css";
+
 const Listing = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -57,7 +59,7 @@ const Listing = () => {
           return (
             <SwiperSlide key={index}>
               <div
-                className='swiperSlideDiv'
+                className={classes.container}
                 style={{
                   background: `url(${listing.imageUrls[index]}) center no-repeat`,
                   backgroundSize: "cover",
@@ -69,7 +71,7 @@ const Listing = () => {
       </Swiper>
 
       <div
-        className='shareIconDiv'
+        className={classes.share}
         onClick={() => {
           navigator.clipboard.writeText(window.location.href);
           setShareLinkCopied(true);
@@ -80,9 +82,9 @@ const Listing = () => {
       >
         <img src={shareIcon} alt='share' />
       </div>
-      {shareLinkCopied && <p className='linkCopies'>Link Copied!</p>}
-      <div className='listingDetails'>
-        <p className='listingName'>
+      {shareLinkCopied && <p>Link Copied!</p>}
+      <div className={classes.details}>
+        <p className={classes.name}>
           {listing.name} - $
           {listing.offer
             ? listing.discountedPrice
@@ -92,32 +94,36 @@ const Listing = () => {
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </p>
-        <p className='listingLocation'>{listing.location}</p>
-        <p className='listingType'>
+        <p className={classes.location}>{listing.location}</p>
+        <p className={classes.type}>
           For {listing.type === "rent" ? "Rent" : "Sale"}
         </p>
         {listing.offer && (
-          <p className='discountPrice'>
+          <p className={classes.discount}>
             $ {listing.regularPrice - listing.discountedPrice} discount
           </p>
         )}
-        <ul className='listingDetailsList'>
-          <li>
+        <ul className={classes.detailsList}>
+          <li className={classes.listItem}>
             {listing.bedrooms > 1
               ? `${listing.bedrooms} Bedrooms`
               : "1 Bedroom"}
           </li>
-          <li>
+          <li className={classes.listItem}>
             {listing.bathrooms > 1
               ? `${listing.bathrooms} Bathrooms`
               : "1 Bathroom"}
           </li>
-          <li>{listing.parking && "Parking spot"}</li>
-          <li>{listing.furnished && "Furnished"}</li>
+          <li className={classes.listItem}>
+            {listing.parking && "Parking spot"}
+          </li>
+          <li className={classes.listItem}>
+            {listing.furnished && "Furnished"}
+          </li>
         </ul>
-        <p className='listingLocationTitle'>Location</p>
+        <p className={classes.title}>Location</p>
 
-        <div className='leafletContainer'>
+        <div className={classes.leafletContainer}>
           <MapContainer
             style={{ height: "100%", width: "100%" }}
             center={[listing.geolocation.lat, listing.geolocation.lng]}
@@ -139,7 +145,7 @@ const Listing = () => {
         {auth.currentUser?.uid !== listing.userRef && (
           <Link
             to={`/contact/${listing.userRef}?listingName=${listing.name}`}
-            className='primaryButton'
+            className={classes.btn}
           >
             Contact Landlord
           </Link>

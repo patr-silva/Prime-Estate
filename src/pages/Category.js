@@ -15,6 +15,8 @@ import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
 
+import classes from "./Category.module.css";
+
 const Category = () => {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,10 +27,8 @@ const Category = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        //Get reference
         const listingsRef = collection(db, "listings");
 
-        //Create a query
         const q = query(
           listingsRef,
           where("type", "==", params.categoryName),
@@ -36,7 +36,6 @@ const Category = () => {
           limit(5)
         );
 
-        //Execute query
         const querySnap = await getDocs(q);
 
         const lastVisibble = querySnap.docs[querySnap.docs.length - 1];
@@ -60,10 +59,8 @@ const Category = () => {
 
   const onFetchMoreListings = async () => {
     try {
-      //Get reference
       const listingsRef = collection(db, "listings");
 
-      //Create a query
       const q = query(
         listingsRef,
         where("type", "==", params.categoryName),
@@ -72,7 +69,6 @@ const Category = () => {
         startAfter(lastFetchedListing)
       );
 
-      //Execute query
       const querySnap = await getDocs(q);
 
       const lastVisibble = querySnap.docs[querySnap.docs.length - 1];
@@ -93,9 +89,9 @@ const Category = () => {
   };
 
   return (
-    <div className='category'>
+    <div className={classes.container}>
       <header>
-        <p className='pageHeader'>
+        <p className={classes.header}>
           {params.categoryName === "rent"
             ? "Places for rent"
             : "Places for sale"}
@@ -106,7 +102,7 @@ const Category = () => {
       ) : listings && listings.length > 0 ? (
         <>
           <main>
-            <ul className='categoryListings'>
+            <ul className={classes.listings}>
               {listings.map((elem) => {
                 return (
                   <ListingItem key={elem.id} listing={elem.data} id={elem.id} />
@@ -118,7 +114,7 @@ const Category = () => {
           <br />
           <br />
           {lastFetchedListing && (
-            <p className='loadMore' onClick={onFetchMoreListings}>
+            <p className={classes.load} onClick={onFetchMoreListings}>
               Load more
             </p>
           )}

@@ -17,6 +17,8 @@ import arrowRight from "../assets/svg/keyboardArrowRightIcon.svg";
 import homeIcon from "../assets/svg/homeIcon.svg";
 import ListingItem from "../components/ListingItem";
 
+import classes from "./Profile.module.css";
+
 const Profile = () => {
   const auth = getAuth();
   const [changeDetails, setChangeDetails] = useState(false);
@@ -98,18 +100,18 @@ const Profile = () => {
   };
 
   return (
-    <div className='profile'>
-      <header className='profileHeader'>
-        <p className='pageHeader'>My Profile</p>
-        <button type='button' className='logOut' onClick={onLogout}>
+    <div className={classes.container}>
+      <header className={classes.profileHeader}>
+        <p className={classes.header}>My Profile</p>
+        <button type='button' className={classes.logout} onClick={onLogout}>
           Logout
         </button>
       </header>
       <main>
-        <div className='profileDetailsHeader'>
-          <p className='profileDetailsText'>Personal Details</p>
+        <div className={classes.detailsHeader}>
+          <p>Personal Details</p>
           <p
-            className='changePersonalDetails'
+            className={classes.changeDetailsT}
             onClick={() => {
               changeDetails && onSubmit();
               setChangeDetails((prevState) => !prevState);
@@ -118,7 +120,7 @@ const Profile = () => {
             {changeDetails ? "done" : "change"}
           </p>
         </div>
-        <div className='profileCard'>
+        <div className={classes.card}>
           <form>
             <input
               type='text'
@@ -138,7 +140,7 @@ const Profile = () => {
             />
           </form>
         </div>
-        <Link to='/create-listing' className='createListing'>
+        <Link to='/create-listing' className={classes.create}>
           <img src={homeIcon} alt='home' />
           <p>Sell or rent your home</p>
           <img src={arrowRight} alt='arrow right' />
@@ -146,8 +148,8 @@ const Profile = () => {
 
         {!loading && listings?.length > 0 && (
           <>
-            <p className='listingText'>Your listings</p>
-            <ul className='listingsList'>
+            <p className={classes.listingText}>Your listings</p>
+            <ul className={classes.list}>
               {listings.map((elem, index) => {
                 return (
                   <ListingItem

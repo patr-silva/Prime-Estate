@@ -1,0 +1,130 @@
+.container {
+  margin: 1rem;
+  margin-bottom: 10rem;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    margin: 3rem;
+  }
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.label {
+  font-weight: 600;
+  margin-top: 1rem;
+  display: block;
+}
+
+.btns {
+  display: flex;
+}
+
+.inputName {
+  padding: 0.9rem 3rem;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  padding: 0.9rem 1rem;
+  width: 90%;
+  max-width: 326px;
+}
+
+.flex {
+  display: flex;
+}
+
+.inputSmall {
+  padding: 0.9rem 3rem;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  margin-right: 3rem;
+  padding: 0.9rem 0.7rem;
+  text-align: center;
+}
+
+.inputAddress {
+  padding: 0.9rem 3rem;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  width: 90%;
+  max-width: 326px;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+}
+
+.priceDiv {
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  margin-left: -1.5rem;
+  font-weight: 600;
+}
+
+.imageInfo {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.inputFile {
+  width: 100%;
+}
+
+.inputFile::-webkit-file-upload-button {
+  background-color: #00cc66;
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+}
+
+.createListing {
+  margin-top: 5rem;
+  cursor: pointer;
+  background: #00cc66;
+  border-radius: 1rem;
+  padding: 0.85rem 2rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

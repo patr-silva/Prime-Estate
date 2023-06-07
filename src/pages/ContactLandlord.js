@@ -4,6 +4,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 
+import classes from "./ContactLandlord.module.css";
+
 const ContactLandlord = () => {
   const [message, setMessage] = useState("");
   const [landlord, setLandlord] = useState(null);
@@ -25,43 +27,44 @@ const ContactLandlord = () => {
     };
 
     getLandlord();
-   
   }, [params.landlordId]);
 
   const onChange = (e) => setMessage(e.target.value);
 
   return (
-    <div className='pageContainer'>
+    <div className={classes.container}>
       <header>
-        <p className='pageHeader'>Contact Landlord</p>
+        <p className={classes.header}>Contact Landlord</p>
       </header>
 
       {landlord !== null && (
         <main>
-          <div className='contactLandlord'>
-            <p className='landlordName'>Contact {landlord.userName}</p>
+          <div className={classes.contact}>
+            <p className={classes.name}>Contact {landlord.userName}</p>
           </div>
 
-          <form className='messageForm'>
-            <div className='messageDiv'>
-              <label htmlFor='message' className='messageLabel'>
+          <form className={classes.form}>
+            <div className={classes.message}>
+              <label htmlFor='message' className={classes.label}>
                 Message
               </label>
               <textarea
                 name='message'
                 id='message'
-                className='textarea'
+                className={classes.textarea}
                 value={message}
                 onChange={onChange}
               ></textarea>
             </div>
 
-            <a target='_blank' rel='noreferrer'
+            <a
+              target='_blank'
+              rel='noreferrer'
               href={`mailto:${landlord.email}?Subject=${searchParams.get(
                 "listingName"
               )}&body=${message}`}
             >
-              <button type='button' className='primaryButton'>
+              <button type='button' className={classes.btn}>
                 Send Message
               </button>
             </a>

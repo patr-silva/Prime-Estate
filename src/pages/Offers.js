@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
 
+import classes from "./Offers.module.css";
+
 const Offers = () => {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -90,16 +92,16 @@ const Offers = () => {
   };
 
   return (
-    <div className='category'>
+    <div className={classes.container}>
       <header>
-        <p className='pageHeader'>Offers</p>
+        <p className={classes.header}>Offers</p>
       </header>
       {loading ? (
         <Spinner />
       ) : listings && listings.length > 0 ? (
         <>
           <main>
-            <ul className='categoryListings'>
+            <ul className={classes.list}>
               {listings.map((elem) => {
                 return (
                   <ListingItem key={elem.id} listing={elem.data} id={elem.id} />
@@ -111,7 +113,7 @@ const Offers = () => {
           <br />
           <br />
           {lastFetchedListing && (
-            <p className='loadMore' onClick={onFetchMoreListings}>
+            <p className={classes.load} onClick={onFetchMoreListings}>
               Load more
             </p>
           )}

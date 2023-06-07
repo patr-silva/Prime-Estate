@@ -14,6 +14,8 @@ import "swiper/css/a11y";
 
 import Spinner from "./Spinner";
 
+import classes from "./Slider.module.css";
+
 const Slider = () => {
   const [loading, setLoading] = useState(true);
   const [listings, setListings] = useState(null);
@@ -50,11 +52,13 @@ const Slider = () => {
   return (
     listings && (
       <>
-        <p className='exploreHeading'>Recommended</p>
+        <p className={classes.heading}>Latests Offers</p>
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={1}
+          navigation
           pagination={{ clickable: true }}
+          scrollbar={{ dragable: true }}
           style={{ height: "200px" }}
         >
           {listings.map(({ data, id }) => {
@@ -64,14 +68,14 @@ const Slider = () => {
                 onClick={() => navigate(`/category/${data.type}/${id}`)}
               >
                 <div
-                  className='swiperSlideDiv'
+                  className={classes.container}
                   style={{
                     background: `url(${data.imageUrls[0]}) center no-repeat`,
                     backgroundSize: "cover",
                   }}
                 >
-                  <p className='swiperSlideText'>{data.name}</p>
-                  <p className='swiperSlidePrice'>
+                  <p className={classes.text}>{data.name}</p>
+                  <p className={classes.price}>
                     ${data.discountedPrice ?? data.regularPrice}
                     {data.type === "rent" && "/month"}
                   </p>

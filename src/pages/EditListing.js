@@ -6,17 +6,14 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import {
-  serverTimestamp,
-  doc,
-  updateDoc,
-  getDoc,
-} from "firebase/firestore";
+import { serverTimestamp, doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import Spinner from "../components/Spinner";
+
+import classes from "./EditListing.module.css";
 
 function EditListing() {
   // eslint-disable-next-line
@@ -60,12 +57,12 @@ function EditListing() {
   const isMounted = useRef(true);
   const params = useParams();
 
-useEffect(() =>{
-    if(listing && listing.userRef !== auth.currentUser.uid){
-        toast.error('You can not edit that listing')
-        navigate('/')
+  useEffect(() => {
+    if (listing && listing.userRef !== auth.currentUser.uid) {
+      toast.error("You can not edit that listing");
+      navigate("/");
     }
-}, [])
+  }, []);
 
   //Fetching listing to edit
   useEffect(() => {
@@ -211,8 +208,8 @@ useEffect(() =>{
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
 
     //Update listing
-    const docRef = doc(db, 'listings', params.listingId);
-    await updateDoc(docRef, formDataCopy)
+    const docRef = doc(db, "listings", params.listingId);
+    await updateDoc(docRef, formDataCopy);
 
     setLoading(false);
     toast.success("Listing saved");
@@ -251,18 +248,18 @@ useEffect(() =>{
   }
 
   return (
-    <div className='profile'>
+    <div className={classes.container}>
       <header>
-        <p className='pageHeader'>Edit Listing</p>
+        <p className={classes.header}>Edit Listing</p>
       </header>
 
       <main>
         <form onSubmit={onSubmit}>
-          <label className='formLabel'>Sell / Rent</label>
-          <div className='formButtons'>
+          <label className={classes.label}>Sell / Rent</label>
+          <div className={classes.flex}>
             <button
               type='button'
-              className={type === "sale" ? "formButtonActive" : "formButton"}
+              className={type === "sale" ? "formBtnActive" : "formBtn"}
               id='type'
               value='sale'
               onClick={onMutate}
@@ -271,7 +268,7 @@ useEffect(() =>{
             </button>
             <button
               type='button'
-              className={type === "rent" ? "formButtonActive" : "formButton"}
+              className={type === "rent" ? "formBtnActive" : "formBtn"}
               id='type'
               value='rent'
               onClick={onMutate}
@@ -280,9 +277,9 @@ useEffect(() =>{
             </button>
           </div>
 
-          <label className='formLabel'>Name</label>
+          <label className={classes.label}>Name</label>
           <input
-            className='formInputName'
+            className={classes.address}
             type='text'
             id='name'
             value={name}
@@ -292,11 +289,11 @@ useEffect(() =>{
             required
           />
 
-          <div className='formRooms flex'>
+          <div className={classes.flex}>
             <div>
-              <label className='formLabel'>Bedrooms</label>
+              <label className={classes.label}>Bedrooms</label>
               <input
-                className='formInputSmall'
+                className={classes.inputSmall}
                 type='number'
                 id='bedrooms'
                 value={bedrooms}
@@ -307,9 +304,9 @@ useEffect(() =>{
               />
             </div>
             <div>
-              <label className='formLabel'>Bathrooms</label>
+              <label className={classes.label}>Bathrooms</label>
               <input
-                className='formInputSmall'
+                className={classes.inputSmall}
                 type='number'
                 id='bathrooms'
                 value={bathrooms}
@@ -321,10 +318,10 @@ useEffect(() =>{
             </div>
           </div>
 
-          <label className='formLabel'>Parking spot</label>
-          <div className='formButtons'>
+          <label className={classes.label}>Parking spot</label>
+          <div className={classes.flex}>
             <button
-              className={parking ? "formButtonActive" : "formButton"}
+              className={parking ? "formBtnActive" : "formBtn"}
               type='button'
               id='parking'
               value={true}
@@ -336,7 +333,7 @@ useEffect(() =>{
             </button>
             <button
               className={
-                !parking && parking !== null ? "formButtonActive" : "formButton"
+                !parking && parking !== null ? "formBtnActive" : "formBtn"
               }
               type='button'
               id='parking'
@@ -347,10 +344,10 @@ useEffect(() =>{
             </button>
           </div>
 
-          <label className='formLabel'>Furnished</label>
-          <div className='formButtons'>
+          <label className={classes.label}>Furnished</label>
+          <div className={classes.flex}>
             <button
-              className={furnished ? "formButtonActive" : "formButton"}
+              className={furnished ? "formBtnActive" : "formBtn"}
               type='button'
               id='furnished'
               value={true}
@@ -360,9 +357,7 @@ useEffect(() =>{
             </button>
             <button
               className={
-                !furnished && furnished !== null
-                  ? "formButtonActive"
-                  : "formButton"
+                !furnished && furnished !== null ? "formBtnActive" : "formBtn"
               }
               type='button'
               id='furnished'
@@ -373,9 +368,9 @@ useEffect(() =>{
             </button>
           </div>
 
-          <label className='formLabel'>Address</label>
+          <label className={classes.label}>Address</label>
           <textarea
-            className='formInputAddress'
+            className={classes.address}
             type='text'
             id='address'
             value={address}
@@ -384,11 +379,11 @@ useEffect(() =>{
           />
 
           {!geolocationEnabled && (
-            <div className='formLatLng flex'>
+            <div className={classes.flex}>
               <div>
-                <label className='formLabel'>Latitude</label>
+                <label className={classes.label}>Latitude</label>
                 <input
-                  className='formInputSmall'
+                  className={classes.inputSmall}
                   type='number'
                   id='latitude'
                   value={latitude}
@@ -397,9 +392,9 @@ useEffect(() =>{
                 />
               </div>
               <div>
-                <label className='formLabel'>Longitude</label>
+                <label className={classes.label}>Longitude</label>
                 <input
-                  className='formInputSmall'
+                  className={classes.inputSmall}
                   type='number'
                   id='longitude'
                   value={longitude}
@@ -410,10 +405,10 @@ useEffect(() =>{
             </div>
           )}
 
-          <label className='formLabel'>Offer</label>
-          <div className='formButtons'>
+          <label className={classes.label}>Offer</label>
+          <div className={classes.flex}>
             <button
-              className={offer ? "formButtonActive" : "formButton"}
+              className={offer ? "formBtnActive" : "formBtn"}
               type='button'
               id='offer'
               value={true}
@@ -422,9 +417,7 @@ useEffect(() =>{
               Yes
             </button>
             <button
-              className={
-                !offer && offer !== null ? "formButtonActive" : "formButton"
-              }
+              className={!offer && offer !== null ? "formBtnActive" : "formBtn"}
               type='button'
               id='offer'
               value={false}
@@ -434,10 +427,10 @@ useEffect(() =>{
             </button>
           </div>
 
-          <label className='formLabel'>Regular Price</label>
-          <div className='formPriceDiv'>
+          <label className={classes.label}>Regular Price</label>
+          <div className={classes.price}>
             <input
-              className='formInputSmall'
+              className={classes.inputSmall}
               type='number'
               id='regularPrice'
               value={regularPrice}
@@ -446,14 +439,14 @@ useEffect(() =>{
               max='750000000'
               required
             />
-            {type === "rent" && <p className='formPriceText'>$ / Month</p>}
+            {type === "rent" && <p className={classes.text}>$ / Month</p>}
           </div>
 
           {offer && (
             <>
-              <label className='formLabel'>Discounted Price</label>
+              <label className={classes.label}>Discounted Price</label>
               <input
-                className='formInputSmall'
+                className={classes.inputSmall}
                 type='number'
                 id='discountedPrice'
                 value={discountedPrice}
@@ -465,12 +458,12 @@ useEffect(() =>{
             </>
           )}
 
-          <label className='formLabel'>Images</label>
-          <p className='imagesInfo'>
+          <label className={classes.label}>Images</label>
+          <p className={classes.info}>
             The first image will be the cover (max 6).
           </p>
           <input
-            className='formInputFile'
+            className={classes.inputFile}
             type='file'
             id='images'
             onChange={onMutate}
@@ -479,7 +472,7 @@ useEffect(() =>{
             multiple
             required
           />
-          <button type='submit' className='primaryButton createListingButton'>
+          <button type='submit' className={classes.createBtn}>
             Edit Listing
           </button>
         </form>

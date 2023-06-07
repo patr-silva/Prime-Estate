@@ -1,0 +1,50 @@
+.explore {
+  margin: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .explore {
+    margin: 3rem;
+  }
+}
+
+@media (min-width: 1217px) {
+  .explore {
+    margin-bottom: 10rem;
+  }
+}
+
+@media (max-height: 536) {
+  .explore {
+    margin-bottom: 10rem;
+  }
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.heading {
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+}
+
+.categories a {
+  width: 48%;
+}
+
+.img {
+  min-height: 115px;
+  height: 15vw;
+  width: 100%;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  margin: 0 auto;
+}

@@ -14,6 +14,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import OAuth from "../components/OAuth";
+import classes from "./SignUp.module.css";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -59,21 +60,21 @@ const SignUp = () => {
 
       navigate("/");
     } catch (error) {
-      toast.error('Something went wrong with registration');
+      toast.error("Something went wrong with registration");
     }
   };
 
   return (
     <>
-      <div className='pageContainer'>
+      <div className={classes.container}>
         <header>
-          <p className='pageHeader'>Welcome back!</p>
+          <p className={classes.header}>Welcome back!</p>
         </header>
         <main>
           <form onSubmit={onSubmit}>
             <input
               type='text'
-              className='nameInput'
+              className={classes.nameInput}
               placeholder='Name'
               id='userName'
               value={userName}
@@ -81,17 +82,17 @@ const SignUp = () => {
             />
             <input
               type='email'
-              className='emailInput'
+              className={classes.emailInput}
               placeholder='Email'
               id='email'
               value={email}
               onChange={onChange}
             />
-            <div className='passwordInputDiv'>
+            <div className={classes.passwordDiv}>
               <input
                 type={showPassword ? "text" : "password"}
-                className='passwordInput'
-                placeholder='password'
+                className={classes.passwordInput}
+                placeholder='Password'
                 id='password'
                 value={password}
                 onChange={onChange}
@@ -100,23 +101,23 @@ const SignUp = () => {
                 src={visibilityIcon}
                 alt='Show password'
                 onClick={() => setShowPassword((prevState) => !prevState)}
-                className='showPassword'
+                className={classes.showPassword}
               />
             </div>
-            <Link to='/forgot-password' className='forgotPasswordLink'>
+            <Link to='/forgot-password' className={classes.forgotPassword}>
               Forgot password?
             </Link>
-            <div className='signUpBar'>
-              <p className='signUpText'>Sign Up</p>
-              <button className='signUpButton'>
+            <div className={classes.signUp}>
+              <p className={classes.text}>Sign up</p>
+              <button className={classes.btn}>
                 <ArrowRightIcon fill='#ffffff' width='44px' height='44px' />
               </button>
             </div>
           </form>
-<OAuth/>
-          <Link to='/sign-in' className='registerLink'>
+          <OAuth />
+          <Link to='/sign-in' className={classes.register}>
             {" "}
-            Sign In instead
+            Sign in
           </Link>
         </main>
       </div>

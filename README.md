@@ -35,9 +35,26 @@ Although the core functionalities are implemented, the project is still a work i
 *  ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white)
 * ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=flat-square&logo=firebase)
 
-
 <h1 id="installation">Installation</h1>
 <h2 id="installation">Installation Steps</h2>
 
+1. Clone the repository
+   ```sh
+   git clone https://github.com/patr-silva/Prime-Estate
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run the app 
+      ```sh
+   npm run start
+   ```
 
 <h1 id="screenshots">Screenshots</h1>
+<div>
+<img width="440" alt="Home" src="https://github.com/user-attachments/assets/7388f986-866d-4892-bfd0-0fa76b2d2055">
+<img width="440" alt="listings" src="https://github.com/user-attachments/assets/bfe95895-90f7-4a1d-9045-38614aa95b90">
+<img width="440" alt="details" src="https://github.com/user-attachments/assets/fabf5cd8-f158-4cd4-be24-115dc12525be">
+
+</div>
